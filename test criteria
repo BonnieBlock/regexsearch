@@ -1,0 +1,13 @@
+Test input file:
+	Extended ASCII escape characters
+	Strings that would be regular expressions
+	Strings that would act as code in the script
+
+Test input parameters:
+	Regular expressions
+	Extended ASCII escape characters
+	Strings that would act as code in the script 
+
+Test output:	
+	Each line has a common search match in order to format and print every line.
+	Multiple matches within a line

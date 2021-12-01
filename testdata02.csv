@@ -1,0 +1,12 @@
+id,first_name,last_name,email,phone,ssn
+1,EscapeCharEmoji,😎,asciicodes@whynot.com,222-222-2255,333-55-6789
+2,AnotherRegexStringTest,\d{3}-\d{2}-\d{4},doublequotes@test.org,345-345-3455,555-66-7777
+3,first,last,first.last@email.com,555-555-5555,123-45-6789
+4,TextThatLooksLikeRegex,\d{3}-\d{3}-\d{4},singlequotes@test.org,987-654-3255,222-33-4444
+5,This is a line from the code,print(f'| File name: {self.file} | Line number: {self.line_num} | Match starts at: {self.match_pos} \n| Match found: {formatted_line}'),,999-999-9955,999-99-9999
+6,firstFirstfirst,lastLastlast,firstlast@firstemail.org,000-000-0055,000-000-0000
+7,EscapeChar,\033[35m,mockdata@shouldntbepink.com,333-333-3355,444-44-4444
+8,OneMoreRegexStringTest,d{4},noquotes@test.org,565-555-6655,876-54-3210
+9,WontPatternMatchHere,d{99},patternnotfound@testdata.org,111-111-1155,333-44-5555
+10,First,Last,firstlast@email.org,123-123-1255,000-11-0101
+

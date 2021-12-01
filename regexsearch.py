@@ -96,4 +96,3 @@ for file_name in input_file_list:
                 output.machine_line()
             else:
                 output.display_line()                
-
