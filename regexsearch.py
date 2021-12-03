@@ -1,9 +1,6 @@
 import re
 import argparse
 
-
-#  OOP in order to encapsulate differences between output formats
-
 class colors:
         none = '\033[0m'
         red = '\033[31m'
@@ -51,48 +48,58 @@ class parameters:
         print(f'{self.file}:{self.line_num}:{self.match_pos}:{match.group()}')
 
 
-#  Parse arguments from user input
+    def input_parse(cmdline=None):
+        
+        #  Parse arguments from user input
 
-parser = argparse.ArgumentParser(
-                    description = 'Search one or more files for a regular expression.')
-parser.add_argument('regex', 
-                    help = 'regex pattern to find.  Expression must be surrounded in quotes, example: "\d{3}-\d{3}-\d{4}"'
-                    )
-parser.add_argument('filename', 
-                    nargs = '+', 
-                    help = 'file(s) to search'
-                    )
-group = parser.add_mutually_exclusive_group()
-group.add_argument('-c',
-                    action = 'store_true',
-                    help = 'highlight matches in color'
-                    )
-group.add_argument('-m', 
-                    action = 'store_true',
-                    help = 'print in machine-readable format'
-                    )
+        parser = argparse.ArgumentParser(
+                            description = 'Search one or more files for a regular expression.')
+        parser.add_argument('regex', 
+                            help = 'regex pattern to find.  Expression must be surrounded in quotes, example: "\d{3}-\d{3}-\d{4}"'
+                            )
+        parser.add_argument('filename', 
+                            nargs = '+', 
+                            help = 'file(s) to search'
+                            )
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument('-c',
+                            action = 'store_true',
+                            help = 'highlight matches in color'
+                            )
+        group.add_argument('-m', 
+                            action = 'store_true',
+                            help = 'print in machine-readable format'
+                            )
+        
+        return parser.parse_args()
+        
 
-args = parser.parse_args()
-pattern = args.regex
-input_file_list = args.filename
-if args.c: 
-    color = True
-    machine = False
-elif args.m:
-    color = False
-    machine = True
-else:
-    color = False
-    machine = False
+if __name__ == "__main__":
+    
+    # Parse the command line
+    
+    cmdline = None
+    args = parameters.input_parse(cmdline)
+    pattern = args.regex
+    input_file_list = args.filename
+    if args.c: 
+        color = True
+        machine = False
+    elif args.m:
+        color = False
+        machine = True
+    else:
+        color = False
+        machine = False
 
 
-#  Search for matches and print output based on parameters
+    #  Search for matches and print output based on parameters
 
-for file_name in input_file_list:
-    for i, line in enumerate(open(file_name)):
-        for match in re.finditer(pattern, line):
-            output = parameters(file_name, line, i+1, match.start(), match.group())
-            if machine:
-                output.machine_line()
-            else:
-                output.display_line()                
+    for file_name in input_file_list:
+        for i, line in enumerate(open(file_name)):
+            for match in re.finditer(pattern, line):
+                output = parameters(file_name, line, i+1, match.start(), match.group())
+                if machine:
+                    output.machine_line()
+                else:
+                    output.display_line()                
